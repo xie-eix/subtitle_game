@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="A context-first English writing game built from film dialogue."
+    />
+    <meta name="theme-color" content="#f3efe7" />
+    <title>Before the Subtitle</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Before the Subtitle home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Before the Subtitle</span>
+        </a>
+
+        <div class="topbar-actions">
+          <div class="progress-copy" aria-live="polite">
+            <span id="sceneCount">Scene 1 / 50</span>
+            <span class="progress-word">Free writing</span>
+          </div>
+          <button
+            class="sound-button"
+            id="soundToggle"
+            type="button"
+            aria-pressed="true"
+          >
+            <span class="sound-indicator" aria-hidden="true"></span>
+            <span id="soundLabel">Sound on</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="workspace" id="questionView" aria-live="polite">
+          <section class="scene-panel" id="scenePanel">
+            <div class="eyebrow-row">
+              <span class="eyebrow" id="sceneNumber">SCENE 01</span>
+              <span class="mode-label">Free writing · No score</span>
+            </div>
+
+            <h1 class="plot-hint" id="plotHint"></h1>
+            <p class="film-title" id="filmTitle"></p>
+
+            <div class="dialogue-block">
+              <span class="section-label">Dialogue before the blank</span>
+              <div class="dialogue-lines" id="previousLines"></div>
+              <p class="blank-line" aria-label="Missing line">
+                <span class="cue-line" aria-hidden="true"></span>
+                <span id="blankMarker">______</span>
+              </p>
+              <div class="prompt-translation">
+                <span class="section-label">Chinese subtitle</span>
+                <p id="blankChinese"></p>
+              </div>
+              <div
+                class="continuation-block prompt-continuation"
+                id="continuationBlock"
+              >
+                <span class="section-label">Dialogue after the blank</span>
+                <div
+                  class="dialogue-lines dialogue-lines-after"
+                  id="followingLines"
+                ></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="writing-panel" id="writingPanel">
+            <label class="answer-label" for="answerInput">
+              Write the missing line in English.
+            </label>
+            <p class="answer-help">
+              Use the dialogue before and after the blank. Your answer is not graded.
+            </p>
+            <textarea
+              id="answerInput"
+              rows="6"
+              maxlength="600"
+              spellcheck="true"
+              autocomplete="off"
+              placeholder="Type your version here..."
+            ></textarea>
+            <div class="input-meta">
+              <span id="characterCount">0 characters</span>
+              <span>Ctrl / ⌘ + Enter to reveal</span>
+            </div>
+            <p class="input-error" id="inputError" role="alert"></p>
+            <button class="primary-button" id="submitButton" type="button">
+              Reveal the subtitle
+            </button>
+          </section>
+
+          <section class="reveal-panel" id="revealPanel" hidden>
+            <div class="reveal-heading">
+              <div>
+                <span class="eyebrow">Compare</span>
+                <h2>Your version and the film line</h2>
+              </div>
+              <button class="next-button" id="nextButton" type="button">
+                Next scene
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <div class="comparison-grid">
+              <article class="comparison-item">
+                <span class="section-label">Your line</span>
+                <p id="yourAnswer"></p>
+              </article>
+              <article class="comparison-item answer-reference">
+                <span class="section-label">English subtitle</span>
+                <p id="englishReference"></p>
+              </article>
+            </div>
+
+            <div class="translation-block">
+              <span class="section-label">Original Chinese subtitle</span>
+              <p id="professionalZh"></p>
+            </div>
+
+            <details class="source-details">
+              <summary>Subtitle source and timing</summary>
+              <div id="sourceDetails"></div>
+            </details>
+          </section>
+        </section>
+
+        <section class="finish-panel" id="finishPanel" hidden>
+          <span class="eyebrow">All scenes complete</span>
+          <h1>You have reached the final subtitle.</h1>
+          <p>
+            You completed 50 free-writing prompts. Start again to revisit the
+            scenes in a fresh random order.
+          </p>
+          <button class="primary-button finish-button" id="restartButton" type="button">
+            Start again
+          </button>
+        </section>
+      </main>
+
+      <footer class="footer-note">
+        <span>50 scenes · 4 films</span>
+        <span>Written answers are not stored or scored.</span>
+      </footer>
+    </div>
+
+    <noscript>This game requires JavaScript.</noscript>
+    <script src="./data/questions.v1.js" defer></script>
+    <script src="./src/app.js" defer></script>
+  </body>
+</html>
